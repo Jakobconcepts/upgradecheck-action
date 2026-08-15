@@ -1,0 +1,29 @@
+name: UpgradeCheck n8n Model Lifecycle Audit
+description: Scan n8n workflow JSON files for AI model IDs that are retiring or retired.
+author: UpgradeCheck
+
+branding:
+  icon: search
+  color: purple
+
+inputs:
+  path:
+    description: File or directory to scan for exported n8n workflow JSON files.
+    required: false
+    default: .
+  fail-on:
+    description: When to fail the job. One of retired, retiring, or none.
+    required: false
+    default: retired
+
+outputs:
+  issue-count:
+    description: Total number of retiring or retired model references found.
+  retired-count:
+    description: Number of retired model references found.
+  retiring-count:
+    description: Number of retiring model references found.
+
+runs:
+  using: node24
+  main: index.js
